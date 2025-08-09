@@ -1,0 +1,163 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #C8AC70;
+	font-family: Tahoma, Arial;
+}
+img{
+	border: none;
+}
+.pad{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.padding{
+	padding-left: 17px;
+}
+.bold{font-weight: bold;}
+.inputext{
+	background-color: #C4AE7F;
+	border: 1px solid #7B4811;
+}
+.error{
+	color: #cc0000 ;
+}
+
+.menu{
+	background-color: #C4AE7F;
+}
+
+a.page_menu:link{
+	color: #663300;
+}
+a.page_menu:active{
+	text-decoration: none;
+}
+a.page_menu:visited{
+	text-decoration: none;
+}
+a:link{color: black;}
+a:hover{background:#b19862; text-decoration:none;}
+a.button{
+	background: #FF8B00;
+	text-decoration: none;
+	width: 232px;
+	text-align: center;
+	border: 1px solid black;
+	display: block;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	color: black;
+}
+a.button:link{
+	text-decoration: none;
+}
+a.button:active{
+	text-decoration: none;
+	background: #FFE200;
+}
+a.button:hover{
+	text-decoration: none;
+	background: #FFE200;
+}
+a.button:visited{
+	text-decoration: none;
+}
+
+div.light{
+	background-color: #DCC99F;
+}
+hr{
+	border: 1px solid #dcc99f;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+div.pstatus{
+	top: 0;
+	left: 0;
+	margin-top: 1px;
+}
+
+div.container{
+	width:232px;
+	height: 150px;
+	position: relative;
+	margin-top: 1px;
+	text-align: center;
+}
+div.container div{
+  width:232px;
+  position: absolute;
+}
+div.border_image{
+  z-index: 2;
+}
+div.location_image{
+	margin-top:23px;
+	z-index: 1;
+}
+div.text_background{
+	z-index: 3;
+	 bottom:1px;
+}
+div.text{
+	bottom: 10px;
+	z-index: 4;
+}
+div.container div.pstatus{
+	z-index: 5;
+}
+div.left_name{
+	top:0;
+	left: 0;
+	margin-top: 1px;
+	margin-left: 15px;
+	text-align: left;
+	z-index: 5;
+}
+div.right_name{
+	width:230px;
+	text-align: right;
+	margin-top: -5px;
+}
+.fight_button{
+	background-color: #FF8B00;
+	border: 2px solid black;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 3px;
+}
+div.left_hero{
+	left: 17px;
+	bottom: 17px;
+	text-align: left;
+	z-index: 3;
+}
+div.right_hero{
+	right: 17px;
+	bottom: 17px;
+	text-align: right;
+	z-index: 3;
+}
+.caption{
+	background-color: #C4AE7F;
+}
+.button{
+	background-color: #FF8B00;
+	border: 2px solid black;
+	width: 232px;
+}
+.system_message{
+	color: red;
+}
+.fight_message{
+	color: yellow;
+}
+a.message{
+	text-decoration: none;
+}
+div.message{
+	padding-bottom: 3px;
+	padding-top: 3px;
+	background-color: #C4AE7F;
+}

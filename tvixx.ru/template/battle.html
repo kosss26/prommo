@@ -1,0 +1,456 @@
+<!-- Трихордная боевая система -->
+<div id="trichord-container">
+    <!-- Индикатор стиля игрока -->
+    <div id="player-style-indicator"></div>
+    
+    <!-- Индикатор стиля противника -->
+    <div id="enemy-style-indicator"></div>
+    
+    <!-- Контейнер потоков (будет добавлен через JavaScript) -->
+    <div id="trichord-streams">
+        <!-- Поток -->
+        <div class="stream-indicator" id="stream-flow" style="background-color: #3498db;">
+            <div class="stream-label">Поток</div>
+            <div class="stream-fill" id="stream-fill-flow"></div>
+        </div>
+        
+        <!-- Форма -->
+        <div class="stream-indicator" id="stream-form" style="background-color: #e74c3c;">
+            <div class="stream-label">Форма</div>
+            <div class="stream-fill" id="stream-fill-form"></div>
+        </div>
+        
+        <!-- Пустота -->
+        <div class="stream-indicator" id="stream-void" style="background-color: #9b59b6;">
+            <div class="stream-label">Пустота</div>
+            <div class="stream-fill" id="stream-fill-void"></div>
+        </div>
+    </div>
+    
+    <!-- Панель боевых действий Трихордной системы -->
+    <div id="trichord-actions" style="display: none; position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); z-index: 1000; background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; padding: 10px;">
+        <!-- Действия потока -->
+        <div class="trichord-action-row" style="display: flex; margin-bottom: 5px;">
+            <button class="trichord-action flow-action" data-stream="FLOW" data-action="quick_strike" style="background-color: rgba(0, 0, 0, 0.6); border: 1px solid #3498db; color: white; padding: 5px 10px; margin: 5px; border-radius: 5px; cursor: pointer; box-shadow: 0 0 5px #3498db;">Быстрый удар</button>
+            <button class="trichord-action flow-action" data-stream="FLOW" data-action="flow_surge" style="background-color: rgba(0, 0, 0, 0.6); border: 1px solid #3498db; color: white; padding: 5px 10px; margin: 5px; border-radius: 5px; cursor: pointer; box-shadow: 0 0 5px #3498db;">Поток силы</button>
+        </div>
+        
+        <!-- Действия формы -->
+        <div class="trichord-action-row" style="display: flex; margin-bottom: 5px;">
+            <button class="trichord-action form-action" data-stream="FORM" data-action="fortify" style="background-color: rgba(0, 0, 0, 0.6); border: 1px solid #e74c3c; color: white; padding: 5px 10px; margin: 5px; border-radius: 5px; cursor: pointer; box-shadow: 0 0 5px #e74c3c;">Укрепление</button>
+            <button class="trichord-action form-action" data-stream="FORM" data-action="form_strike" style="background-color: rgba(0, 0, 0, 0.6); border: 1px solid #e74c3c; color: white; padding: 5px 10px; margin: 5px; border-radius: 5px; cursor: pointer; box-shadow: 0 0 5px #e74c3c;">Удар формы</button>
+        </div>
+        
+        <!-- Действия пустоты -->
+        <div class="trichord-action-row" style="display: flex; margin-bottom: 5px;">
+            <button class="trichord-action void-action" data-stream="VOID" data-action="void_step" style="background-color: rgba(0, 0, 0, 0.6); border: 1px solid #9b59b6; color: white; padding: 5px 10px; margin: 5px; border-radius: 5px; cursor: pointer; box-shadow: 0 0 5px #9b59b6;">Шаг пустоты</button>
+            <button class="trichord-action void-action" data-stream="VOID" data-action="void_drain" style="background-color: rgba(0, 0, 0, 0.6); border: 1px solid #9b59b6; color: white; padding: 5px 10px; margin: 5px; border-radius: 5px; cursor: pointer; box-shadow: 0 0 5px #9b59b6;">Поглощение</button>
+        </div>
+    </div>
+</div>
+
+<!-- Подключение CSS для Трихордной системы -->
+<style id="trichord-inline-css">
+    /* Контейнер Трихордной системы */
+    #trichord-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 900;
+    }
+    
+    /* Контейнер потоков */
+    #trichord-streams {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        pointer-events: auto;
+    }
+
+    /* Индикаторы стилей */
+    #player-style-indicator, #enemy-style-indicator {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid white;
+        z-index: 1000;
+        display: none;
+    }
+    
+    #player-style-indicator {
+        bottom: 10px;
+        left: 10px;
+    }
+    
+    #enemy-style-indicator {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Индикаторы потоков */
+    .stream-indicator {
+        width: 80px;
+        height: 50px;
+        border-radius: 5px;
+        opacity: 0.8;
+        position: relative;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        pointer-events: auto;
+    }
+
+    /* Метки потоков */
+    .stream-label {
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        padding-top: 5px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        font-size: 14px;
+    }
+
+    /* Заполнение потоков */
+    .stream-fill {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background-color: rgba(255, 255, 255, 0.4);
+        transition: height 0.3s ease-out;
+        border-radius: 0 0 5px 5px;
+    }
+
+    /* Эффекты при наведении */
+    .stream-indicator:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Тричордные действия */
+    .trichord-action {
+        background-color: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .trichord-action:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .trichord-action:active {
+        transform: translateY(1px);
+    }
+
+    /* Стили для разных типов действий */
+    .flow-action {
+        border-color: #3498db;
+        box-shadow: 0 0 5px #3498db;
+    }
+
+    .form-action {
+        border-color: #e74c3c;
+        box-shadow: 0 0 5px #e74c3c;
+    }
+
+    .void-action {
+        border-color: #9b59b6;
+        box-shadow: 0 0 5px #9b59b6;
+    }
+    
+    /* Ауры для разных стилей */
+    .flow-aura {
+        box-shadow: 0 0 15px #3498db !important;
+        transition: box-shadow 0.5s ease-in-out;
+    }
+    
+    .form-aura {
+        box-shadow: 0 0 15px #e74c3c !important;
+        transition: box-shadow 0.5s ease-in-out;
+    }
+    
+    .void-aura {
+        box-shadow: 0 0 15px #9b59b6 !important;
+        transition: box-shadow 0.5s ease-in-out;
+    }
+    
+    /* Анимации для атак разных стилей */
+    @keyframes flow-pulse {
+        0% { box-shadow: 0 0 5px 2px #3498db; }
+        50% { box-shadow: 0 0 20px 5px #3498db; }
+        100% { box-shadow: 0 0 5px 2px #3498db; }
+    }
+    
+    @keyframes form-pulse {
+        0% { box-shadow: 0 0 5px 2px #e74c3c; }
+        50% { box-shadow: 0 0 20px 5px #e74c3c; }
+        100% { box-shadow: 0 0 5px 2px #e74c3c; }
+    }
+    
+    @keyframes void-pulse {
+        0% { box-shadow: 0 0 5px 2px #9b59b6; }
+        50% { box-shadow: 0 0 20px 5px #9b59b6; }
+        100% { box-shadow: 0 0 5px 2px #9b59b6; }
+    }
+    
+    .quick-flow-attack {
+        animation: flow-pulse 0.3s ease-out;
+    }
+    
+    .heavy-form-attack {
+        animation: form-pulse 0.5s ease-out;
+    }
+    
+    .void-attack {
+        animation: void-pulse 0.4s ease-out;
+    }
+    
+    /* Анимация пульсации */
+    @keyframes pulse {
+        0% { opacity: 0.4; }
+        50% { opacity: 0.9; }
+        100% { opacity: 0.4; }
+    }
+    
+    /* Стили для отображения урона */
+    .damage-number {
+        position: absolute;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+        z-index: 1001;
+        pointer-events: none;
+        text-align: center;
+        animation: damage-float 1s ease-out;
+        opacity: 0;
+    }
+    
+    @keyframes damage-float {
+        0% {
+            transform: translateY(0) scale(0.8);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-50px) scale(1.2);
+            opacity: 0;
+        }
+    }
+</style>
+
+<!-- Экран с объяснением Трихордной системы (появляется при первом бое) -->
+<div id="trichord-tutorial" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 2000;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; background-color: #222; color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+        <h2 style="text-align: center; color: white;">Новая Трихордная боевая система</h2>
+        
+        <div style="display: flex; justify-content: space-between; margin: 20px 0;">
+            <div style="flex: 1; padding: 10px; text-align: center; background-color: rgba(52, 152, 219, 0.3); border-radius: 5px; margin: 0 5px;">
+                <h3 style="color: #3498db;">Поток</h3>
+                <p>Быстрые атаки, увеличивает шанс критического удара и скорость</p>
+            </div>
+            
+            <div style="flex: 1; padding: 10px; text-align: center; background-color: rgba(231, 76, 60, 0.3); border-radius: 5px; margin: 0 5px;">
+                <h3 style="color: #e74c3c;">Форма</h3>
+                <p>Защита и стабильность, увеличивает броню и повышает урон</p>
+            </div>
+            
+            <div style="flex: 1; padding: 10px; text-align: center; background-color: rgba(155, 89, 182, 0.3); border-radius: 5px; margin: 0 5px;">
+                <h3 style="color: #9b59b6;">Пустота</h3>
+                <p>Особые атаки, проникает сквозь защиту и усиливает способности</p>
+            </div>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3 style="text-align: center; color: white;">Как это работает</h3>
+            <p>
+                1. Каждое действие в бою наполняет три энергетических потока<br>
+                2. Когда поток достигает высокого уровня, активируется резонанс<br>
+                3. Резонансы дают уникальные эффекты и способности<br>
+                4. Сбалансируйте потоки для достижения гармонии и максимальной силы
+            </p>
+        </div>
+        
+        <button id="close-tutorial" style="display: block; margin: 0 auto; padding: 10px 20px; background-color: white; color: black; border: none; border-radius: 5px; cursor: pointer;">Начать бой</button>
+    </div>
+</div>
+
+<!-- Прямая инициализация Трихордной системы -->
+<script>
+// Инициализация при загрузке документа
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Инициализация Трихордной системы из шаблона...');
+    
+    // Проверка и показ туториала
+    if (!localStorage.getItem('trichordTutorialShown')) {
+        document.getElementById('trichord-tutorial').style.display = 'block';
+        
+        document.getElementById('close-tutorial').addEventListener('click', function() {
+            document.getElementById('trichord-tutorial').style.display = 'none';
+            localStorage.setItem('trichordTutorialShown', 'true');
+            
+            // Инициализируем систему после закрытия туториала
+            initTrichordSystem();
+        });
+    } else {
+        // Инициализируем систему сразу, если туториал уже был показан
+        initTrichordSystem();
+    }
+    
+    // Функция инициализации Трихордной системы
+    function initTrichordSystem() {
+        console.log('Запуск инициализации Трихордной системы...');
+        
+        // Проверяем, что все объекты существуют
+        if (typeof window.MyLib === 'undefined') {
+            console.warn('Объект MyLib не найден, создаем...');
+            window.MyLib = {};
+        }
+        
+        if (!window.MyLib.bttl) {
+            console.warn('Объект MyLib.bttl не найден, создаем...');
+            window.MyLib.bttl = {};
+        }
+        
+        if (!window.MyLib.bttl.trichordInitialized) {
+            console.log('Трихордная система не инициализирована, запускаем...');
+            
+            // Показываем контейнер с потоками
+            document.getElementById('trichord-streams').style.display = 'flex';
+            
+            // Добавляем кнопку Трихордных действий
+            addTrichordButton();
+            
+            // Добавляем обработчики для кнопок действий
+            setupActionHandlers();
+            
+            // Устанавливаем флаг инициализации
+            window.MyLib.bttl.trichordInitialized = true;
+            
+            console.log('Трихордная система успешно инициализирована!');
+        }
+    }
+    
+    // Функция для добавления кнопки Трихордных действий
+    function addTrichordButton() {
+        const buttonContainer = document.getElementById('button_visible');
+        if (buttonContainer && !document.getElementById('trichord-button')) {
+            const trichordButton = document.createElement('button');
+            trichordButton.id = 'trichord-button';
+            trichordButton.textContent = 'Трихордные действия';
+            trichordButton.style.cssText = 'background-color: rgba(0, 0, 0, 0.7); color: white; border: 1px solid white; padding: 5px 10px; margin-top: 10px; width: 100%; cursor: pointer;';
+            
+            trichordButton.addEventListener('click', function() {
+                const actionsPanel = document.getElementById('trichord-actions');
+                if (actionsPanel) {
+                    actionsPanel.style.display = actionsPanel.style.display === 'none' ? 'block' : 'none';
+                }
+            });
+            
+            buttonContainer.appendChild(trichordButton);
+            console.log('Кнопка Трихордных действий добавлена');
+        }
+    }
+    
+    // Функция для настройки обработчиков кнопок действий
+    function setupActionHandlers() {
+        document.querySelectorAll('.trichord-action').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const stream = this.getAttribute('data-stream');
+                const action = this.getAttribute('data-action');
+                
+                console.log(`Действие: ${action}, поток: ${stream}`);
+                
+                // Скрываем панель действий
+                document.getElementById('trichord-actions').style.display = 'none';
+                
+                // Вызываем стандартную атаку
+                const attackButton = document.getElementById('button_yellow');
+                if (attackButton) {
+                    attackButton.click();
+                } else {
+                    console.error('Кнопка атаки не найдена!');
+                }
+            });
+        });
+    }
+    
+    // Пытаемся добавить кнопку Трихорда сразу
+    if (document.getElementById('button_visible')) {
+        addTrichordButton();
+    }
+    
+    // И также пробуем добавить её через интервал (на случай, если элемент появится позже)
+    const buttonInterval = setInterval(function() {
+        if (document.getElementById('button_visible') && !document.getElementById('trichord-button')) {
+            addTrichordButton();
+        } else if (document.getElementById('trichord-button')) {
+            clearInterval(buttonInterval);
+        }
+    }, 1000);
+});
+
+// Глобальная функция для ручной инициализации
+window.initTrichordSystem = function() {
+    // Показываем контейнер с потоками
+    document.getElementById('trichord-streams').style.display = 'flex';
+    
+    // Показываем кнопку Трихордных действий
+    const trichordButton = document.getElementById('trichord-button');
+    if (trichordButton) {
+        trichordButton.style.display = 'block';
+    }
+    
+    console.log('Трихордная система инициализирована вручную');
+    return true;
+};
+
+// Принудительная инициализация системы через 5 секунд
+setTimeout(function() {
+    console.log('Принудительная инициализация Трихордной системы...');
+    const streamsContainer = document.getElementById('trichord-streams');
+    if (streamsContainer) {
+        streamsContainer.style.display = 'flex';
+    }
+    
+    // Добавляем кнопку Трихорда
+    const buttonContainer = document.getElementById('button_visible');
+    if (buttonContainer && !document.getElementById('trichord-button')) {
+        const trichordButton = document.createElement('button');
+        trichordButton.id = 'trichord-button';
+        trichordButton.textContent = 'Трихордные действия';
+        trichordButton.style.cssText = 'background-color: rgba(0, 0, 0, 0.7); color: white; border: 1px solid white; padding: 5px 10px; margin-top: 10px; width: 100%; cursor: pointer;';
+        
+        trichordButton.addEventListener('click', function() {
+            const actionsPanel = document.getElementById('trichord-actions');
+            if (actionsPanel) {
+                actionsPanel.style.display = actionsPanel.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+        
+        buttonContainer.appendChild(trichordButton);
+    }
+}, 5000);
+</script> 

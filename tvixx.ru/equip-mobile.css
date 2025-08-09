@@ -1,0 +1,735 @@
+/* Мобильные стили для раздела снаряжения */
+
+/* Мобильная плавающая кнопка действий */
+.mobile-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #FFD700, #FF8C00);
+    color: #663300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.mobile-fab:active {
+    transform: scale(0.95);
+}
+
+/* Оверлей для мобильных действий */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 999;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Панель действий снизу экрана */
+.mobile-item-actions {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(211, 198, 163, 0.95);
+    padding: 15px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    z-index: 1000;
+}
+
+.mobile-item-actions.active {
+    transform: translateY(0);
+}
+
+.mobile-actions-handle {
+    width: 40px;
+    height: 5px;
+    background: rgba(139, 69, 19, 0.3);
+    border-radius: 3px;
+    margin: 0 auto 15px;
+}
+
+/* Кнопки действий */
+.mobile-action-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #FFD700, #FF8C00);
+    color: #663300;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-action-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+    opacity: 0.5;
+}
+
+.mobile-action-btn.secondary {
+    background: linear-gradient(to bottom, #F5F5F5, #E0E0E0);
+    color: #663300;
+}
+
+.mobile-action-btn.danger {
+    background: linear-gradient(to bottom, #FF7043, #E64A19);
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-action-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-action-btn:disabled {
+    background: linear-gradient(to bottom, #E0E0E0, #BDBDBD);
+    color: #757575;
+    cursor: not-allowed;
+}
+
+/* Мобильный верхний бар */
+.mobile-header {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.mobile-back-button {
+    background: rgba(255, 255, 255, 0.3);
+    color: #4A3520;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-category-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4A3520;
+}
+
+.mobile-filter-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4A3520;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Мобильные фильтры */
+.mobile-filter-bar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-filter-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    background: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.mobile-filter-options {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 10px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.mobile-filter-options::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.mobile-sort-option {
+    padding: 6px 12px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #4A3520;
+    font-size: 13px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.mobile-sort-option.active {
+    background: rgba(139, 69, 19, 0.7);
+    color: white;
+}
+
+.mobile-badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.mobile-filter-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #4A3520;
+    font-size: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.mobile-filter-badge.active {
+    background: rgba(139, 69, 19, 0.7);
+    color: white;
+}
+
+/* Подсказка о свайпе */
+.swipe-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(139, 69, 19, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.swipe-hint.show {
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Мобильное отображение списка категорий */
+.mobile-equipment-list {
+    display: none;
+}
+
+.mobile-equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.mobile-category-card {
+    background: linear-gradient(to bottom, rgba(196, 174, 127, 0.9), rgba(196, 174, 127, 0.7));
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 120px;
+}
+
+.mobile-category-card.has-equipped {
+    border-left: 3px solid #FF8B00;
+}
+
+.mobile-category-card.has-equipped::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #FF8B00, transparent);
+}
+
+.mobile-category-icon {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-category-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #4A3520;
+    margin-bottom: 5px;
+}
+
+.mobile-equipped-name {
+    font-size: 12px;
+    color: #5D4037;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 16px;
+    max-width: 100%;
+    padding: 0 5px;
+}
+
+.mobile-category-count {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(139, 69, 19, 0.2);
+    color: #4A3520;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.mobile-category-card:active {
+    transform: scale(0.98);
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media screen and (max-width: 840px) {
+    /* Показываем мобильную кнопку и скрываем десктопные кнопки */
+    .mobile-fab {
+        display: flex;
+    }
+    
+    .showcase-actions {
+        display: none;
+    }
+    
+    .item-actions-small {
+        display: none !important;
+    }
+    
+    /* Показываем мобильный хедер */
+    .mobile-header {
+        display: flex !important;
+    }
+    
+    /* Скрываем десктопные фильтры */
+    .filter-bar {
+        display: none;
+    }
+    
+    /* Адаптация карточки предмета */
+    .item-showcase {
+        padding: 12px;
+    }
+    
+    .showcase-content {
+        flex-direction: column;
+    }
+    
+    .item-preview {
+        margin: 0 auto;
+    }
+    
+    .item-image-wrapper {
+        margin: 0 auto 10px;
+    }
+    
+    .item-durability {
+        flex-wrap: wrap;
+    }
+    
+    .item-durability .progress {
+        flex: 1 0 100%;
+        margin-top: 5px;
+    }
+    
+    /* Улучшение списка снаряжения */
+    .equipment-content {
+        padding: 10px;
+    }
+    
+    .equipment-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+    }
+    
+    .equipment-stats {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .equipment-meta {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 3px;
+        scrollbar-width: none;
+    }
+    
+    .equipment-meta::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Адаптация сетки категорий */
+    .equip_categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .equip_slot {
+        padding: 10px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .equip-category-icon {
+        margin: 0 auto 8px;
+    }
+    
+    .equip_name {
+        text-align: center;
+    }
+    
+    /* Показываем мобильное отображение категорий */
+    .mobile-equipment-list {
+        display: block;
+    }
+    
+    /* Скрываем десктопное отображение категорий */
+    .equip_categories {
+        display: none !important;
+    }
+    
+    /* Улучшенное отображение списка предметов */
+    .equipment-item {
+        padding: 0;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        background: linear-gradient(to bottom, rgba(196, 174, 127, 0.9), rgba(196, 174, 127, 0.7));
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        transform: translateZ(0); /* Hardware acceleration */
+    }
+    
+    .equipment-item:active {
+        transform: scale(0.98);
+    }
+    
+    .equipment-content {
+        padding: 12px;
+        gap: 10px;
+        align-items: center;
+        position: relative;
+    }
+    
+    .equipment-icon {
+        position: relative;
+        min-width: 55px;
+        max-width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .equipment-icon .shopicobg {
+        transform: scale(0.9);
+    }
+    
+    .equipment-details {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .equipment-name {
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #4A3520;
+        margin-bottom: 2px;
+        font-size: 15px;
+    }
+    
+    .equipment-meta {
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        gap: 5px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    .equipment-meta::-webkit-scrollbar {
+        display: none; /* Chrome/Safari/Edge */
+    }
+    
+    /* Пагинация для мобильных устройств */
+    .mobile-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .page-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        color: #4A3520;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(139, 69, 19, 0.2);
+        transition: all 0.2s ease;
+    }
+    
+    .page-btn:hover, .page-btn:active {
+        background: rgba(139, 69, 19, 0.2);
+    }
+    
+    .page-btn.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    
+    .page-current {
+        padding: 5px 15px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        color: #4A3520;
+        font-size: 14px;
+    }
+    
+    /* Мобильная панель фильтров */
+    .mobile-filter-bar {
+        display: none;
+        margin-bottom: 15px;
+    }
+    
+    .mobile-filter-bar.show {
+        display: block;
+    }
+    
+    /* Анимация для привлечения внимания */
+    @keyframes pulse-button {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    .pulse-animation {
+        animation: pulse-button 1.5s infinite;
+    }
+}
+
+/* Стили для очень маленьких экранов */
+@media screen and (max-width: 480px) {
+    /* Улучшаем карточку предмета */
+    .item-image-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .item-glow {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .item-title {
+        font-size: 16px;
+    }
+    
+    .item-style-badge, .level-info {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+    
+    .stat-row {
+        padding: 6px;
+        font-size: 13px;
+    }
+    
+    .effect-badge {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .progress {
+        height: 15px;
+    }
+    
+    .progress-bar {
+        font-size: 10px;
+    }
+    
+    .item-description {
+        font-size: 14px;
+        padding: 12px;
+    }
+    
+    /* Компактное отображение списка предметов */
+    .equipment-item {
+        margin-bottom: 8px;
+    }
+    
+    .equipment-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+    
+    .equipment-name {
+        font-size: 14px;
+    }
+    
+    .equipment-stats {
+        font-size: 12px;
+    }
+    
+    .style-pill {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .level-warning {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .section-title {
+        font-size: 15px;
+        padding: 8px;
+    }
+    
+    /* Двухколоночный список для мобильных */
+    .mobile-equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .mobile-category-card {
+        padding: 10px;
+    }
+    
+    .mobile-category-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .mobile-category-name {
+        font-size: 13px;
+    }
+    
+    /* Список предметов в две колонки */
+    .equipped-items, .available-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .equipment-content {
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .equipment-icon {
+        margin: 0 auto 8px;
+        min-width: 50px;
+        max-width: 50px;
+        height: 50px;
+    }
+    
+    .equipment-stats {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.3;
+        max-height: 32px;
+        text-align: center;
+    }
+    
+    .equipment-meta {
+        justify-content: center;
+    }
+    
+    .item-action {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+    }
+} 

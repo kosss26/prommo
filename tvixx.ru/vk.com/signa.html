@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+
+            <title>www//(?)</title>
+            <meta name="description" content="project" />
+            <meta name="keywords" content="project" />
+           <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <canvas style="background:red" id="canvas" width="540" height="540">_____fggvvv__</canvas>
+    <center>
+текст <input type="text" id="text" value=""><br>
+X - <input id="x" type="text" name="x" value=""><br>
+Y - <input id="y" type="text" name="y" value=""><br>
+<button id="btn">присвоить</button><center>
+  </body>
+  <script>
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  var img = new Image();
+  img.src="3MGu0igCB-A.jpg";
+  var x = 170;
+  var y = 280;
+  var text = "Сигна для черного серого";
+  document.getElementById("btn").onclick=function(){
+  	x = document.getElementById("x").value;
+      text = document.getElementById("text").value;
+      y = document.getElementById("y").value;
+  run();
+  }
+ 
+  
+  img.onload=run();
+function run(){
+  	ctx.drawImage(img,0,0);
+      ctx.strokeStyle = "#F00";
+      ctx.font = 'bold 30px sans-serif';
+      ctx.strokeText(text,x,y);
+}
+
+  </script>
+</html>

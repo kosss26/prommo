@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, #1a2a3a, #2d3e50) fixed;
+    color: #e6d8b5;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.main-wrapper {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/texture.png') repeat; /* Добавьте текстуру, например, пергамент или камень */
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.location-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.location-container:hover {
+    transform: scale(1.02);
+}
+
+.location-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.snow-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.location-name {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(img/location/GOL_app_perg.png) no-repeat center / 100% 100%;
+    padding: 15px 40px;
+    font-size: 24px;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.action-button {
+    padding: 14px 25px;
+    font-size: 18px;
+    border-radius: 12px;
+    color: #FFF8DC;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.action-button:hover::after {
+    opacity: 1;
+}
+
+.action-button:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.action-button.hunt {
+    background: linear-gradient(135deg, #6B8E23, #3d5a1e);
+}
+
+.action-button.duel {
+    background: linear-gradient(135deg, #D2691E, #8B4513);
+}
+
+.action-button i {
+    margin-right: 10px;
+}
+
+.content-container {
+    background: rgba(30, 40, 50, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.notification-item, .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 248, 220, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.notification-item:hover, .menu-item:hover {
+    background: rgba(255, 248, 220, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.notification-item.news {
+    border-left: 4px solid #FFD700;
+}
+
+.notification-item.mail {
+    border-left: 4px solid #00BFFF;
+}
+
+.notification-icon, .menu-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.notification-content, .menu-text {
+    flex-grow: 1;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.notification-count {
+    font-weight: bold;
+    color: #FFD700;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.3), transparent);
+    margin: 15px 0;
+    border: none;
+}
+
+.quests-active::before, .quests-available::before, .quests-completed::before {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.quests-active::before {
+    content: "●";
+    color: #CB2025;
+}
+
+.quests-available::before {
+    content: "●";
+    color: #e6d8b5;
+}
+
+.quests-completed::before {
+    content: "●";
+    color: #32CD32;
+}
+
+/* Tooltips */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #e6d8b5;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .main-wrapper {
+        padding: 15px;
+    }
+    .location-name {
+        font-size: 20px;
+        padding: 12px 30px;
+    }
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .action-button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-wrapper {
+        max-width: 1100px;
+    }
+    .location-name {
+        font-size: 28px;
+    }
+}

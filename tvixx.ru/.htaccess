@@ -1,0 +1,37 @@
+AddDefaultCharset UTF-8
+DirectoryIndex index.php
+Options -Indexes
+
+
+RewriteEngine On
+
+
+
+# End Allow versioning for js and css files
+RewriteRule ^/?$ index.php [L,QSA]
+RewriteRule ^registration?$ registration.php [L,QSA]
+RewriteRule ^main?$ main.php [L,QSA]
+RewriteRule ^pay?$ pay.php [L,QSA]
+RewriteRule ^profile/([0-9]*)/?$ profile.php?id=$1 [L,QSA]
+RewriteRule ^profile/([0-9]*)/([0-9]*)?$ profile.php?id=$1&equip=$2 [L,QSA]
+RewriteRule ^gift/([0-9]*)/?$ gift.php?id=$1 [L,QSA]
+RewriteRule ^friends/([0-9]*)/?$ friends.php?id=$1 [L,QSA]
+RewriteRule ^online?$ online.php [L,QSA]
+RewriteRule ^clan?$ clan.php [L,QSA]
+RewriteRule ^hunt?$ hunt/index.php [L,QSA]
+RewriteRule ^huntb?$ huntb/index.php [L,QSA]
+RewriteRule ^hunt/attack/([0-9]*)/?$ hunt/attack.php?id=$1 [L,QSA]
+RewriteRule ^hunt/battle/([0-9]*)/?$ hunt/battle.php?id=$1 [L,QSA]
+RewriteRule ^ban/([0-9]*)/([0-9]*)/([0-9]*)/?$ Adb.php?id=$1&id_room=$2&id_message=$3 [L,QSA]
+RewriteRule ^hunt/result?$ hunt/result.php [L,QSA]
+RewriteRule ^mail?$ mail.php [L,QSA]
+RewriteRule ^mail2?$ mail2.php [L,QSA]
+RewriteRule ^shop?$ shop.php [L,QSA]
+RewriteRule ^help?$ help.php [L,QSA]
+RewriteRule ^equip?$ equip.php [L,QSA]
+RewriteRule ^php/vk/zbtimg.jpg?$ php/vk/genimg.php [L,QSA]
+RewriteRule ^disconnect?$ disconnect.php [L,QSA]
+RewriteRule ^img/sheivan1?$ https://sun1-2.userapi.com/c834504/u100785305/docs/d11/c9a34261e09c/sheivan1.gif [L,QSA]
+ErrorDocument 404 /error404.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
