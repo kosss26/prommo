@@ -1,0 +1,29 @@
+
+
+
+
+.sheivan_20{background-image: url(../../img/animation/sheivan/20.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_21{background-image: url(../../img/animation/sheivan/21.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_22{background-image: url(../../img/animation/sheivan/22.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_23{background-image: url(../../img/animation/sheivan/23.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_24{background-image: url(../../img/animation/sheivan/24.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_25{background-image: url(../../img/animation/sheivan/25.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_26{background-image: url(../../img/animation/sheivan/26.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_27{background-image: url(../../img/animation/sheivan/27.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_28{background-image: url(../../img/animation/sheivan/28.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+.sheivan_29{background-image: url(../../img/animation/sheivan/29.gif);background-repeat: no-repeat;background-size: 270px 148px;background-position-x: 0;background-position-y: 0;width: 270px;height: 148px;position: absolute;top: 32px;left: 25px;}
+
+.repei{
+    background-repeat: no-repeat;
+    background-image: url(../../img/animation/sheivan/20.gif);
+    /* background-color: aqua; */
+    background-size: 270px 150px;
+    background-position-x: 0;
+    background-position-y: 0;
+    width: 270px;
+    height: 150px;
+    position: absolute;
+    top: 30px;
+    left: 25px;
+    transform: scale(-1, 1);
+}

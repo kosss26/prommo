@@ -1,0 +1,20 @@
+ * * * * *  command to execute
+ T T T T T
+ ¦ ¦ ¦ ¦ ¦
+ ¦ ¦ ¦ ¦ ¦
+ ¦ ¦ ¦ ¦ L----- day of week (0 - 7) (0 to 6 are Sunday to Saturday, 7 is Sunday again)
+ ¦ ¦ ¦ L---------- month (1 - 12)
+ ¦ ¦ L--------------- day of month (1 - 31)
+ ¦ L-------------------- hour (0 - 23)
+ L------------------------- min (0 - 59)
+Если надо каждые пять минут то */5
+
+
+/*Две команды крона*/
+Чтобы создать новое задание введите следующую команду:
+
+ crontab -e
+
+*/5 * * * *   wget -O - -q -t 1 https://mobitva2.online/cron/vjv.php
+*/1 * * * *   wget -O - -q -t 1 https://mobitva2.online/cron/stenka.php
+@reboot /usr/bin/php /var/www/html/cron/daemon_1_s.php & >/dev/null

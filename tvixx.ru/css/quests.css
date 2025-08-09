@@ -1,0 +1,174 @@
+/*
+ * Новый кардинальный дизайн страницы квестов
+ * Поддерживает существующую разметку, изменяя только внешний вид.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+    --q-bg-start:#0f2027;
+    --q-bg-end:#2c5364;
+    --q-card-bg:rgba(255,255,255,0.04);
+    --q-glass-bg:rgba(255,255,255,0.08);
+    --q-glass-border:rgba(255,255,255,0.14);
+    --q-text:#e8e8e8;
+    --q-accent:#42e8e0;
+    --q-accent-2:#ff6ec7;
+    --q-radius:18px;
+    --q-shadow:0 8px 25px rgba(0,0,0,0.55);
+    --q-transition:all .3s ease;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(145deg,var(--q-bg-start),var(--q-bg-end));
+    color:var(--q-text);
+    overflow-x:hidden;
+}
+
+/* Общие утилиты */
+.text-center{ text-align:center; }
+.hidden{ display:none!important; }
+.flex{ display:flex; }
+.flex-center{ display:flex; align-items:center; justify-content:center; }
+
+/* Контейнеры представлений */
+.view{
+    max-width:640px;
+    margin:18px auto;
+    padding:20px 24px;
+    background:var(--q-card-bg);
+    border:1px solid var(--q-glass-border);
+    border-radius:var(--q-radius);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    box-shadow:var(--q-shadow);
+    transition:var(--q-transition);
+}
+.view:hover{ transform:translateY(-4px); }
+
+.view a{
+    display:block;
+    font-weight:600;
+    padding:8px 4px;
+    color:var(--q-accent);
+    transition:var(--q-transition);
+}
+.view a:hover{
+    color:var(--q-accent-2);
+    transform:translateX(4px);
+}
+
+.view hr{
+    border:none;
+    height:1px;
+    background:linear-gradient(to right, transparent, var(--q-glass-border), transparent);
+    margin:10px 0;
+}
+
+/* Кнопки вкладок */
+.questbtn{
+    width:110px;
+    height:38px;
+    margin:6px;
+    background-repeat:no-repeat;
+    background-size:contain;
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    transition:transform .25s ease, filter .25s ease;
+    cursor:pointer;
+}
+.questbtn:hover{
+    transform:translateY(-4px) scale(1.06);
+    filter:brightness(1.25) drop-shadow(0 6px 14px rgba(0,0,0,0.55));
+}
+
+/* Кнопки действий */
+.btnyes, .btnno, .button_alt_01{
+    width:140px;
+    height:46px;
+    background-size:80%;
+    background-position:center;
+    background-repeat:no-repeat;
+    transition:var(--q-transition);
+    cursor:pointer;
+}
+.btnyes:hover,.btnno:hover,.button_alt_01:hover{ transform:translateY(-3px) scale(1.04); opacity:0.88; }
+
+/* Блок рамки описания */
+.ramka_dvig{
+    max-width:640px;
+    margin:22px auto;
+    border-radius:var(--q-radius);
+    overflow:hidden;
+    position:relative;
+    border:2px solid var(--q-accent);
+    box-shadow:0 10px 28px rgba(0,0,0,0.6);
+    background:var(--q-card-bg);
+}
+
+/* Пергамент и фон */
+.perg img{ display:none; }
+.perg{
+    position:absolute;
+    bottom:14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    display:flex;
+    justify-content:center;
+    pointer-events:none;
+}
+.perg_text{ pointer-events:auto; font-weight:600; letter-spacing:0.5px; }
+
+/* Таблица-рамка */
+.ptb_2c{
+    background:var(--q-glass-bg);
+    border:1px solid var(--q-glass-border);
+    border-radius:var(--q-radius);
+    padding:20px 16px;
+    position:relative;
+}
+
+/* Модальное окно квестов */
+.msgQuests{
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.75)!important;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+}
+.msgQuests table{ width:92%!important; max-width:520px; }
+.msgQuests .text_msg_quest{ color:var(--q-text); font-size:17px; line-height:1.5; }
+.msgQuests div[style*="box-shadow"] {
+    background:rgba(15,32,39,0.93) !important;
+    border:1px solid var(--q-glass-border) !important;
+    border-radius:var(--q-radius) !important;
+    color:var(--q-text) !important;
+}
+
+/* Анимации */
+@keyframes pulseGlow{ 0%{box-shadow:0 0 0 rgba(66,232,224,0.0);} 50%{box-shadow:0 0 18px rgba(66,232,224,0.35);} 100%{box-shadow:0 0 0 rgba(66,232,224,0.0);} }
+
+.questbtn:hover, .btnyes:hover, .btnno:hover, .button_alt_01:hover{ animation:pulseGlow 1.2s infinite; }
+
+/* Скрываем устаревшие декоративные ячейки */
+.ptb_1l, .ptb_1c, .ptb_1r, .ptb_3l, .ptb_3c, .ptb_3r, .ptb_2l, .ptb_2r{ display:none; }
+
+/* Адаптивность */
+@media(max-width:480px){
+    .view{ padding:16px 14px; }
+    .ramka_dvig{ margin:14px auto; }
+    .questbtn{ width:90px; height:32px; }
+    .btnyes,.btnno,.button_alt_01{ width:120px; height:42px; }
+}
+
+/* --- Mobile full-width fix for description/modal --- */
+@media (max-width: 576px){
+  .ramka_dvig,
+  .msgQuests table{width:100%!important;max-width:none!important;}
+  .ptb_2c{width:100%!important;display:block;}
+} 

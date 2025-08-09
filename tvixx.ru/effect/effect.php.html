@@ -1,0 +1,36 @@
+<?php
+//$effect["id"] = айди эффекта
+//$effect["id_user"] = айди игрока у которого эффект
+//$effect["icons"] = иконка эффекта
+//$effect["hod"] = количество ходов
+//$effect["uron"] = урон
+//$effect["bron"] = бронь
+//$effect["toch"] = точность
+//$effect["health"] = Здоровье
+//$effect["kd"] = оглашение
+//$effect["block"] = блок
+//$effect["kol"] = количество
+   if($effect["id_user"] > 10) {
+/// Уделяем Сиссию боя для безопасности
+message("Превышене количество эффектов");
+}elseif($effect["id"] < 0) {
+/// Уделяем Сиссию боя для безопасности
+message("Превышене индикатора");
+}elseif($effect["hod"] > 10 & < 0 ){
+message("Ошыбка");
+}
+$array = array(
+    "name" => $name          ,
+    "icons" => $icons        ,
+    "hod"  => $hod           ,
+    "id"  => $id             ,
+    "kol" => $kol            ,
+    "health" => $health      ,
+    "id_user" => $id_user    ,
+    "uron" => $uron          ,
+    "bron" => $bron          ,
+    "toch" => $toch          ,
+    "kd"  =>  $kd            ,
+    "block" => $block        ,
+);
+?>

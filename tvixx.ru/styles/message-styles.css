@@ -1,0 +1,87 @@
+/* Стили для информационных окон */
+
+/* Общие переменные стилей */
+:root {
+    --bg-grad-start: #111;
+    --bg-grad-end: #1a1a1a;
+    --accent: #f5c15d;
+    --accent-2: #ff8452;
+    --card-bg: rgba(255,255,255,0.05);
+    --glass-bg: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.12);
+    --text: #fff;
+    --muted: #c2c2c2;
+    --radius: 16px;
+    --secondary-bg: rgba(255,255,255,0.03);
+    --item-hover: rgba(255,255,255,0.15);
+    --panel-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    --success-gradient: linear-gradient(135deg, #2ecc71, #27ae60);
+    --danger-gradient: linear-gradient(135deg, #e74c3c, #c0392b);
+    --primary-gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+/* Стили для базовых информационных окон */
+.msg {
+    background-color: rgba(0,0,0,0.7) !important;
+    z-index: 9999 !important;
+}
+
+.msg table td {
+    vertical-align: middle;
+    text-align: center;
+    background-color: transparent !important;
+}
+
+.msg table td > div {
+    background: linear-gradient(135deg, var(--bg-grad-start), var(--bg-grad-end)) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--panel-shadow) !important;
+    color: var(--text) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px !important;
+}
+
+.msg .text_msg {
+    color: var(--text) !important;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.msg .button_alt_01 {
+    background: var(--primary-gradient) !important;
+    color: #111 !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin: 5px auto !important;
+    box-shadow: var(--panel-shadow) !important;
+}
+
+.msg .button_alt_01:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Стили для окон с подтверждением (Да/Нет) */
+.msg-yn-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.msg-yn-buttons .button_alt_01 {
+    width: 45%;
+    margin: 0 !important;
+}
+
+/* Подключаем шрифт Inter для информационных окон */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); 

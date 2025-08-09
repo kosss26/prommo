@@ -1,0 +1,38 @@
+    body{
+        margin: 0 auto;
+    }
+    .footlinetime{
+        z-index: 1000;position: fixed;bottom: 0;left: 0;width: 100%;border-spacing: 0;
+    }    
+
+    .footbcs{
+        border-top-style: solid;
+        border-width: 1px;
+        border-color: black;
+        text-align: center;
+        color: #ddca9f;
+        background-color: #633300;
+        font-family: GameFont;
+    }
+
+    .footlmenut{
+        z-index: 1001;position: fixed;bottom: 0;left: 0;width: 40%;border-spacing: 0;
+    } 
+    .footlmenub{
+        border-right-style: solid;
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .footrmenut{
+        z-index: 1001;position: fixed;bottom: 0;right: 0;width: 40%;border-spacing: 0;
+    } 
+    .footrmenub{
+        border-left-style: solid;
+        border-radius: 4px;
+        width: 100%;
+    }
+    
+    .footrmenub:hover,.footlmenub:hover{
+        background-color: #774400;
+    }
